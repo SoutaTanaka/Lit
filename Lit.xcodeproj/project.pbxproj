@@ -102,9 +102,9 @@
 			isa = PBXGroup;
 			children = (
 				05E482281CFEEB6100FA5143 /* AppDelegate.swift */,
+				05E4825C1CFEED4200FA5143 /* WebViewController.swift */,
 				05E4822A1CFEEB6100FA5143 /* FirstViewController.swift */,
 				05E4822C1CFEEB6100FA5143 /* SecondViewController.swift */,
-				05E4825C1CFEED4200FA5143 /* WebViewController.swift */,
 				05E4822E1CFEEB6100FA5143 /* Main.storyboard */,
 				05E482311CFEEB6100FA5143 /* Assets.xcassets */,
 				05E482331CFEEB6100FA5143 /* LaunchScreen.storyboard */,
@@ -492,6 +492,7 @@
 				05E482511CFEEB6100FA5143 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05E482521CFEEB6100FA5143 /* Build configuration list for PBXNativeTarget "LitTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +501,7 @@
 				05E482541CFEEB6100FA5143 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05E482551CFEEB6100FA5143 /* Build configuration list for PBXNativeTarget "LitUITests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +510,7 @@
 				05E482571CFEEB6100FA5143 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

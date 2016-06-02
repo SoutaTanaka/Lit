@@ -11,12 +11,15 @@ import UIKit
 class WebViewController: UIViewController ,UIWebViewDelegate{
     
     @IBOutlet weak var webview: UIWebView!
+    
     var targetURL = "https://www.life-is-tech.com"
     
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //webviwe
+        
         webview.scalesPageToFit = true
          loadAddressURL()
         // Do any additional setup after loading the view, typically from a nib.
