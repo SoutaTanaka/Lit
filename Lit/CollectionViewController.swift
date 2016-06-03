@@ -6,7 +6,7 @@
 //  Copyright © 2016年 田中颯太. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class CollectionViewController: UICollectionViewController {
 
