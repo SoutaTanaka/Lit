@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class SecondViewController: UIViewController {
+import AssetsLibrary
+class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,15 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func pictur(sender: AnyObject) {
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)){
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.allowsEditing = true
+//            imagePickerController.delegate = self
+            presentViewController(imagePickerController, animated: true, completion: nil)
+        }
+    }
 
 }
 
