@@ -110,7 +110,8 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2Xs-9R-ayI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <color key="tintColor" red="0.94309780561768453" green="0.94322643979057597" blue="0.93063157694947862" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.9249666461278635" green="0.94322643979057597" blue="0.93165017807209749" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.94322643979057597" green="0.93124894060322416" blue="0.94238488030948619" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="S9v-zV-z7d">
                                     <size key="itemSize" width="120" height="120"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -149,6 +150,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="collection" destination="2Xs-9R-ayI" id="Y21-Kq-l8K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RvD-Tz-sY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
