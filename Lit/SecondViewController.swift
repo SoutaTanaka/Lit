@@ -51,7 +51,40 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    @IBAction func dele(sender: AnyObject) {
+        
+        if (photo.count != 0){
+            if data.arrayForKey("photos") != nil {
+                data.arrayForKey("photos") as! [UIImage]
+                photo.removeLast()
+                collection.reloadData()
+                data.setObject(photo, forKey: "photos")
+            }
+        }
+        else if photo.isEmpty{
+            // tesutoko-do
+            
+            let alert: UIAlertController = UIAlertController(title: "写真がありません", message: "写真を追加してください", preferredStyle:  UIAlertControllerStyle.Alert)
+            
+            //
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            
+            alert.addAction(defaultAction)
+            
+            
+            presentViewController(alert, animated: true, completion: nil)
+            
+            
+            //おわり
+            
+            
+        }
+        
+    }
     @IBAction func pictur(sender: AnyObject) {
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)){
             let imagePickerController = UIImagePickerController()
@@ -73,7 +106,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
-        
+    
 }
 
 
