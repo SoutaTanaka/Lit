@@ -11,7 +11,7 @@
             <objects>
                 <navigationController id="zKn-d1-9qq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="c9Y-H6-J9G"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JVg-rk-Neh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -22,7 +22,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0rn-EK-67o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424" y="-278"/>
+            <point key="canvasLocation" x="-292" y="-130"/>
         </scene>
         <!--First-->
         <scene sceneID="hNz-n2-bh7">
@@ -35,6 +35,12 @@
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPp-Dv-F9C" customClass="drawView" customModule="Lit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
@@ -42,14 +48,21 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="YKY-cL-nFV"/>
                             <barButtonItem systemItem="compose" id="ohy-Gh-jDc"/>
-                            <barButtonItem systemItem="cancel" id="glx-6K-Bfe"/>
+                            <barButtonItem systemItem="cancel" id="glx-6K-Bfe">
+                                <connections>
+                                    <action selector="clia" destination="9pv-A4-QxB" id="tzJ-GA-PZa"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="drawViewArea" destination="EPp-Dv-F9C" id="A4n-Qm-3Zn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="-463"/>
+            <point key="canvasLocation" x="-326" y="539"/>
         </scene>
         <!--Item-->
         <scene sceneID="LP2-va-Bgh">
@@ -74,6 +87,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="uL3-Yq-PSc"/>
+                    <navigationItem key="navigationItem" id="YCI-cA-Dps">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="ULU-sQ-R0B">
+                            <connections>
+                                <action selector="tapButton:" destination="5C0-8p-X2v" id="xFZ-w5-Ih3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="webview" destination="EVf-xn-cJC" id="f9t-gR-APK"/>
@@ -81,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avd-al-7HD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-25" y="975"/>
+            <point key="canvasLocation" x="-857" y="730"/>
         </scene>
         <!--Item-->
         <scene sceneID="1hZ-Gu-zPU">
@@ -99,7 +119,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UA9-f7-wik" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="417" y="445"/>
+            <point key="canvasLocation" x="245" y="-130"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="G3m-Jd-EHn">
@@ -168,7 +188,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RvD-Tz-sY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="784" y="418"/>
+            <point key="canvasLocation" x="245" y="730"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="pQU-Px-lDb">
+            <objects>
+                <navigationController id="0Ww-ZG-6D4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="g0C-9h-STm"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2mL-da-Pus">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5C0-8p-X2v" kind="relationship" relationship="rootViewController" id="cA1-dH-Jfl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZSr-1K-kuk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-857" y="-130"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -184,12 +222,12 @@
                     <connections>
                         <segue destination="zKn-d1-9qq" kind="relationship" relationship="viewControllers" id="jzR-0C-lnc"/>
                         <segue destination="nfo-SS-Zyw" kind="relationship" relationship="viewControllers" id="fHg-Cm-v60"/>
-                        <segue destination="5C0-8p-X2v" kind="relationship" relationship="viewControllers" id="Tff-sI-B0U"/>
+                        <segue destination="0Ww-ZG-6D4" kind="relationship" relationship="viewControllers" id="oyo-mM-Dd0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-292" y="-876"/>
         </scene>
     </scenes>
     <resources>
