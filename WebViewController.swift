@@ -111,7 +111,7 @@ class WebViewController: UIViewController ,UIWebViewDelegate ,UIActionSheetDeleg
             
         }
         if buttonIndex == 3{
-            let text: String! = "Message!!"
+            let text: String! = "Life is Tech ! | ライフイズテック | 中学生、高校生のためのプログラミング教育・ITキャンプ／スクール https://life-is-tech.com/ @Life_is_Techさんから"
             let encodeMessage: String! = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             let messageURL: NSURL! = NSURL( string: "line://msg/text/" + encodeMessage )
             if (UIApplication.sharedApplication().canOpenURL(messageURL)) {
