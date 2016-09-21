@@ -8,13 +8,23 @@ import UIKit
 
 
 class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
-    @IBOutlet weak var drawViewArea: drawView!
+    var imgView:UIImageView! = nil
+    @IBOutlet weak var drawViewArea: DrawView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        imgView = UIImageView(frame:CGRectMake(0,0,100,100))
+        imgView.image = UIImage(named: "FaceBook.png")
+//        drawViewArea.layer.contents = UIImage(named: "FaceBook.png")!.CGImage!
+        self.view.addSubview(imgView)
+        
+        view.sendSubviewToBack(imgView)
+        drawViewArea.backgroundColor = UIColor.clearColor()
+        
+        
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     override func didReceiveMemoryWarning() {
@@ -32,7 +42,7 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
     }
     @IBAction func clia(){
         
-        let theDrawView : drawView = drawViewArea as drawView    //
+        let theDrawView : DrawView = drawViewArea as DrawView    //
         theDrawView.lines = []
         theDrawView.setNeedsDisplay()
         
@@ -49,3 +59,11 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
     
     
 }
+//パン、ピンチで拡大、縮小、移動
+//選択画像の表示
+//UIImageViewの生成
+//
+//
+//
+//
+//

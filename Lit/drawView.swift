@@ -1,12 +1,12 @@
 
 import UIKit
 
-class drawView: UIView {
+class DrawView: UIView {
     
     //6.
     var lines: [Line] = []
     var lastPoint: CGPoint!
-    var isWriteflag = false
+    var isWriteflag = true
     var a: CGFloat = 0
     var b: CGFloat = 1
     var c: CGFloat = 0
@@ -21,7 +21,11 @@ class drawView: UIView {
         //self.backgroundColor = UIColor.blackColor() //チェック用
         
     }
-    //タッチ取得
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        }
+//    タッチ取得
     //7.
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if isWriteflag == true{
