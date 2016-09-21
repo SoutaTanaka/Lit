@@ -8,15 +8,24 @@ import UIKit
 
 
 class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    var imgView:UIImageView! = nil
+    
     @IBOutlet weak var drawViewArea: DrawView!
+    var imageView:UIImageView! = nil
+    var imgView:UIImageView! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        imgView = UIImageView(frame:CGRectMake(0,0,100,100))
-        imgView.image = UIImage(named: "FaceBook.png")
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.allowsEditing = true
+            imagePickerController.delegate = self
+            presentViewController(imagePickerController, animated: true, completion: nil)
+        }
+
+        imgView = UIImageView(frame:CGRectMake(0,64,320,455))
+    
 //        drawViewArea.layer.contents = UIImage(named: "FaceBook.png")!.CGImage!
         self.view.addSubview(imgView)
         
@@ -51,12 +60,27 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)){
             let imagePickerController = UIImagePickerController()
             imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.preferredContentSize = self.view.frame.size
             imagePickerController.allowsEditing = true
             imagePickerController.delegate = self
             presentViewController(imagePickerController, animated: true, completion: nil)
         }
     }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        if let info = editingInfo, let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage{
+            imgView.image = editedImage
+            imgView.contentMode = .ScaleAspectFit
+        }else{
+            imgView.image = image
+        }
+
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+
     
 }
 //パン、ピンチで拡大、縮小、移動
