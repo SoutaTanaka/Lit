@@ -24,18 +24,23 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
             present(imagePickerController, animated: true, completion: nil)
         }
 
-        imgView = UIImageView(frame:CGRect(x: 0,y: 64,width: 320,height: 455))
-    
-//        drawViewArea.layer.contents = UIImage(named: "FaceBook.png")!.CGImage!
-        self.view.addSubview(imgView)
         
-        view.sendSubview(toBack: imgView)
         drawViewArea.backgroundColor = UIColor.clear
         
         
 
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        imgView = UIImageView(frame:drawViewArea.frame)
+        
+        //        drawViewArea.layer.contents = UIImage(named: "FaceBook.png")!.CGImage!
+        self.view.addSubview(imgView)
+        
+        view.sendSubview(toBack: imgView)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

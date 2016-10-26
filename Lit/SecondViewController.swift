@@ -55,7 +55,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         if (photo.count != 0){
             if data.array(forKey: "photos") != nil {
-                data.array(forKey: "photos") as! [UIImage]
+                photo = data.array(forKey: "photos") as! [Data]
                 photo.removeLast()
                 collection.reloadData()
                 data.set(photo, forKey: "photos")
