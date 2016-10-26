@@ -16,21 +16,21 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
             let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.sourceType = .photoLibrary
             imagePickerController.allowsEditing = true
             imagePickerController.delegate = self
-            presentViewController(imagePickerController, animated: true, completion: nil)
+            present(imagePickerController, animated: true, completion: nil)
         }
 
-        imgView = UIImageView(frame:CGRectMake(0,64,320,455))
+        imgView = UIImageView(frame:CGRect(x: 0,y: 64,width: 320,height: 455))
     
 //        drawViewArea.layer.contents = UIImage(named: "FaceBook.png")!.CGImage!
         self.view.addSubview(imgView)
         
-        view.sendSubviewToBack(imgView)
-        drawViewArea.backgroundColor = UIColor.clearColor()
+        view.sendSubview(toBack: imgView)
+        drawViewArea.backgroundColor = UIColor.clear
         
         
 
@@ -56,28 +56,28 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
         theDrawView.setNeedsDisplay()
         
     }
-    @IBAction func pictur(sender: AnyObject) {
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)){
+    @IBAction func pictur(_ sender: AnyObject) {
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)){
             let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.sourceType = .photoLibrary
             imagePickerController.preferredContentSize = self.view.frame.size
             imagePickerController.allowsEditing = true
             imagePickerController.delegate = self
-            presentViewController(imagePickerController, animated: true, completion: nil)
+            present(imagePickerController, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
         if let info = editingInfo, let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage{
             imgView.image = editedImage
-            imgView.contentMode = .ScaleAspectFit
+            imgView.contentMode = .scaleAspectFit
         }else{
             imgView.image = image
         }
 
         
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
         
     }
 

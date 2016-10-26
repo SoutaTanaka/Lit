@@ -11,31 +11,31 @@ import Social
 
 class WebViewController: UIViewController ,UIWebViewDelegate ,UIActionSheetDelegate{
     
-    @IBAction func tapButton(sender : AnyObject) {
+    @IBAction func tapButton(_ sender : AnyObject) {
         
         
-        var sheet: UIActionSheet = UIActionSheet()
+        let sheet: UIActionSheet = UIActionSheet()
         
         
         let title: String = "Please choose a plan"
         
         sheet.title  = title
         sheet.delegate = self
-        sheet.addButtonWithTitle("Cancel")
-        sheet.addButtonWithTitle("FaceBookで共有")
-        sheet.addButtonWithTitle("Twitterで共有")
-        sheet.addButtonWithTitle("LINEで共有")
+        sheet.addButton(withTitle: "Cancel")
+        sheet.addButton(withTitle: "FaceBookで共有")
+        sheet.addButton(withTitle: "Twitterで共有")
+        sheet.addButton(withTitle: "LINEで共有")
         // キャンセルボタンのindexを指定
         sheet.cancelButtonIndex = 0
         
         // UIActionSheet表示
-        sheet.showInView(self.view)
+        sheet.show(in: self.view)
     }
     
     
     @IBOutlet weak var webview: UIWebView!
     
-    @IBAction func tapBottan(sender: AnyObject) {
+    @IBAction func tapBottan(_ sender: AnyObject) {
     }
     var targetURL = "https://www.life-is-tech.com"
     
@@ -49,26 +49,26 @@ class WebViewController: UIViewController ,UIWebViewDelegate ,UIActionSheetDeleg
         loadAddressURL()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    func Facebook(sender: AnyObject) {
+    func Facebook(_ sender: AnyObject) {
         let text = "Life is Tech ! | ライフイズテック | 中学生、高校生のためのプログラミング教育・ITキャンプ／スクール https://life-is-tech.com/ @Life_is_Techさんから"
         let composeViewController: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)!
         composeViewController.setInitialText(text)
         
-        self.presentViewController(composeViewController, animated: true, completion: nil)
+        self.present(composeViewController, animated: true, completion: nil)
     }
-    func Twittr(sender: AnyObject) {
+    func Twittr(_ sender: AnyObject) {
         let text = "Life is Tech ! | ライフイズテック | 中学生、高校生のためのプログラミング教育・ITキャンプ／スクール https://life-is-tech.com/ @Life_is_Techさんから"
         let composeViewController: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)!
         composeViewController.setInitialText(text)
         
-        self.presentViewController(composeViewController, animated: true, completion: nil)
+        self.present(composeViewController, animated: true, completion: nil)
     }
-    func line(sender: AnyObject) {
+    func line(_ sender: AnyObject) {
         let text: String! = "Message!!"
-        let encodeMessage: String! = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-        let messageURL: NSURL! = NSURL( string: "line://msg/text/" + encodeMessage )
-        if (UIApplication.sharedApplication().canOpenURL(messageURL)) {
-            UIApplication.sharedApplication().openURL( messageURL )
+        let encodeMessage: String! = text.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let messageURL: URL! = URL( string: "line://msg/text/" + encodeMessage )
+        if (UIApplication.shared.canOpenURL(messageURL)) {
+            UIApplication.shared.openURL( messageURL )
         }
     }
     
@@ -81,22 +81,22 @@ class WebViewController: UIViewController ,UIWebViewDelegate ,UIActionSheetDeleg
         // Dispose of any resources that can be recreated.
     }
     func loadAddressURL() {
-        let requestURL = NSURL(string: targetURL)
-        let req = NSURLRequest(URL: requestURL!)
+        let requestURL = URL(string: targetURL)
+        let req = URLRequest(url: requestURL!)
         webview.loadRequest(req)
     }
     //ステータスバーを非表示
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
-    func actionSheet(sheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
-        print("index %d %@", buttonIndex, sheet.buttonTitleAtIndex(buttonIndex))
+    func actionSheet(_ sheet: UIActionSheet!, clickedButtonAt buttonIndex: Int) {
+        print("index %d %@", buttonIndex, sheet.buttonTitle(at: buttonIndex))
         if buttonIndex == 1{
             let text = "Life is Tech ! | ライフイズテック | 中学生、高校生のためのプログラミング教育・ITキャンプ／スクール https://life-is-tech.com/ @Life_is_Techさんから"
             let composeViewController: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)!
             composeViewController.setInitialText(text)
             
-            self.presentViewController(composeViewController, animated: true, completion: nil)
+            self.present(composeViewController, animated: true, completion: nil)
             
             
             
@@ -106,16 +106,16 @@ class WebViewController: UIViewController ,UIWebViewDelegate ,UIActionSheetDeleg
             let composeViewController: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)!
             composeViewController.setInitialText(text)
             
-            self.presentViewController(composeViewController, animated: true, completion: nil)
+            self.present(composeViewController, animated: true, completion: nil)
             
             
         }
         if buttonIndex == 3{
             let text: String! = "Life is Tech ! | ライフイズテック | 中学生、高校生のためのプログラミング教育・ITキャンプ／スクール https://life-is-tech.com/ @Life_is_Techさんから"
-            let encodeMessage: String! = text.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            let messageURL: NSURL! = NSURL( string: "line://msg/text/" + encodeMessage )
-            if (UIApplication.sharedApplication().canOpenURL(messageURL)) {
-                UIApplication.sharedApplication().openURL( messageURL )
+            let encodeMessage: String! = text.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+            let messageURL: URL! = URL( string: "line://msg/text/" + encodeMessage )
+            if (UIApplication.shared.canOpenURL(messageURL)) {
+                UIApplication.shared.openURL( messageURL )
             }
             
             

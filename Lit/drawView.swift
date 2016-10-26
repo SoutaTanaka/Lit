@@ -27,16 +27,16 @@ class DrawView: UIView {
         }
 //    タッチ取得
     //7.
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isWriteflag == true{
-            lastPoint = touches.first?.locationInView(self)
+            lastPoint = touches.first?.location(in: self)
         }
         //lastPoint = touches.anyObject()?.locationInView(self)
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isWriteflag == true{
-            let newPoint = touches.first?.locationInView(self)
+            let newPoint = touches.first?.location(in: self)
             lines.append(Line(start: lastPoint, end: newPoint!))
             lastPoint = newPoint
             
@@ -46,21 +46,21 @@ class DrawView: UIView {
     }
     
     //8.線のやつ
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         if isWriteflag == true{
             let context = UIGraphicsGetCurrentContext()
-            CGContextBeginPath(context)
+            context?.beginPath()
             
             for line in lines {
-                CGContextMoveToPoint(context, line.start.x, line.start.y)
-                CGContextAddLineToPoint(context, line.end.x, line.end.y)
+                context?.move(to: CGPoint(x: line.start.x, y: line.start.y))
+                context?.addLine(to: CGPoint(x: line.end.x, y: line.end.y))
                 
             }
             
-            CGContextSetRGBStrokeColor(context, a, b, c, d) //線の色
-            CGContextSetLineWidth(context, size)  //線の太さ
-            CGContextSetLineCap(context, CGLineCap.Round)   //線を滑らかに
-            CGContextStrokePath(context)
+            context?.setStrokeColor(red: a, green: b, blue: c, alpha: d) //線の色
+            context?.setLineWidth(size)  //線の太さ
+            context?.setLineCap(CGLineCap.round)   //線を滑らかに
+            context?.strokePath()
         }
     }
 }

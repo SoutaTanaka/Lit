@@ -10,38 +10,38 @@
 import UIKit
 import AssetsLibrary
 class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    var photo:[NSData] = []
+    var photo:[Data] = []
     @IBOutlet var collection: UICollectionView!
-    let data: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let data: UserDefaults = UserDefaults.standard
     
     
     override func viewDidLoad() {
-        if data.arrayForKey("photos") != nil{
-            photo = data.arrayForKey("photos") as! [NSData]
+        if data.array(forKey: "photos") != nil{
+            photo = data.array(forKey: "photos") as! [Data]
         }
         
         super.viewDidLoad()
     }
     
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
-        let testCell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        let testCell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         let imageView = testCell.contentView.viewWithTag(1) as! UIImageView
-        let cellImage = photo[indexPath.row]
+        let cellImage = photo[(indexPath as NSIndexPath).row]
         imageView.image = UIImage(data: cellImage)
         return testCell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellSize:CGFloat = self.view.frame.size.width/2 - 10
-        return CGSizeMake(cellSize, cellSize)
+        return CGSize(width: cellSize, height: cellSize)
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photo.count
         
     }
@@ -51,23 +51,23 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func dele(sender: AnyObject) {
+    @IBAction func dele(_ sender: AnyObject) {
         
         if (photo.count != 0){
-            if data.arrayForKey("photos") != nil {
-                data.arrayForKey("photos") as! [UIImage]
+            if data.array(forKey: "photos") != nil {
+                data.array(forKey: "photos") as! [UIImage]
                 photo.removeLast()
                 collection.reloadData()
-                data.setObject(photo, forKey: "photos")
+                data.set(photo, forKey: "photos")
             }
         }
         else if photo.isEmpty{
             // tesutoko-do
             
-            let alert: UIAlertController = UIAlertController(title: "写真がありません", message: "写真を追加してください", preferredStyle:  UIAlertControllerStyle.Alert)
+            let alert: UIAlertController = UIAlertController(title: "写真がありません", message: "写真を追加してください", preferredStyle:  UIAlertControllerStyle.alert)
             
             //
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 
                 (action: UIAlertAction!) -> Void in
                 print("OK")
@@ -76,7 +76,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
             alert.addAction(defaultAction)
             
             
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
             
             
             //おわり
@@ -85,25 +85,25 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
     }
-    @IBAction func pictur(sender: AnyObject) {
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)){
+    @IBAction func pictur(_ sender: AnyObject) {
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)){
             let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .PhotoLibrary
+            imagePickerController.sourceType = .photoLibrary
             imagePickerController.allowsEditing = true
             imagePickerController.delegate = self
-            presentViewController(imagePickerController, animated: true, completion: nil)
+            present(imagePickerController, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if  let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage{
-            let nsdata: NSData = UIImagePNGRepresentation(editedImage)!
+            let nsdata: Data = UIImagePNGRepresentation(editedImage)!
             photo.append (nsdata)
             collection.reloadData()
-            data.setObject(photo, forKey: "photos")
+            data.set(photo, forKey: "photos")
         }
         
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
         
     }
     
