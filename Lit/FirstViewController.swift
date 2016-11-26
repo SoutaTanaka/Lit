@@ -12,6 +12,12 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
     @IBOutlet weak var drawViewArea: DrawView!
     var imageView:UIImageView! = nil
     var imgView:UIImageView! = nil
+    var cancell:String! = "キャンセル"
+    
+    
+    let alert = UIAlertController()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +29,12 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
             imagePickerController.delegate = self
             present(imagePickerController, animated: true, completion: nil)
         }
-
+        
         
         drawViewArea.backgroundColor = UIColor.clear
         
         
-
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -45,7 +51,25 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    @IBAction func which (){
+        alert.title = "方法を選択"
+        alert.addAction(UIAlertAction(title: "写真を追加", style: .default, handler: { action in
+            self.image()
+            
+        }))
+        alert.addAction(UIAlertAction(title: "テンプレートから選ぶ" , style: .default, handler: {action in
+            print ("a")
+        }))
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { action in
+        print ("s") }))
+        present(alert, animated: true, completion: nil)
+
+        //        alert.addButton(withTitle: "写真を追加")
+        //        alert.addButton(withTitle: "テンプレートから選ぶ")
+        //        alert.addButton(withTitle: cancell)
+        //        alert.cancelButtonIndex = 2
+        //        alert.show()
+    }
     
     @IBAction func onoff (){
         if drawViewArea.isWriteflag == false {
@@ -61,16 +85,19 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
         theDrawView.setNeedsDisplay()
         
     }
-    @IBAction func pictur(_ sender: AnyObject) {
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)){
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .photoLibrary
-            imagePickerController.preferredContentSize = self.view.frame.size
-            imagePickerController.allowsEditing = true
-            imagePickerController.delegate = self
-            present(imagePickerController, animated: true, completion: nil)
-        }
+    //    @IBAction func pictur(_ sender: AnyObject) {
+    //
+    func image (){
+                    if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)){
+                        let imagePickerController = UIImagePickerController()
+                        imagePickerController.sourceType = .photoLibrary
+                        imagePickerController.preferredContentSize = self.view.frame.size
+                        imagePickerController.allowsEditing = true
+                        imagePickerController.delegate = self
+                        present(imagePickerController, animated: true, completion: nil)
+                    }
     }
+    //    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
@@ -80,12 +107,12 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
         }else{
             imgView.image = image
         }
-
+        
         
         picker.dismiss(animated: true, completion: nil)
         
     }
-
+    
     
 }
 //パン、ピンチで拡大、縮小、移動

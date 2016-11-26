@@ -124,5 +124,5 @@ class WebViewController: UIViewController ,UIWebViewDelegate ,UIActionSheetDeleg
     
     
 }
-//シェアできるようにする
+//シェアできるようにする ok
 

@@ -9,7 +9,11 @@
 
 import UIKit
 import AssetsLibrary
+import AVFoundation
 class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    var stillImageOutput: AVCaptureStillImageOutput!
+    var session: AVCaptureSession!
+    
     var photo:[Data] = []
     @IBOutlet var collection: UICollectionView!
     let data: UserDefaults = UserDefaults.standard
@@ -21,8 +25,9 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         super.viewDidLoad()
-    }
-    
+        
+            }
+        
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let testCell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
@@ -85,6 +90,21 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
     }
+    
+    @IBAction func photo(_ sender: AnyObject){
+        print("s")
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
+            let photos = UIImagePickerController()
+            photos.sourceType = .camera
+            photos.allowsEditing = true
+            photos.delegate = self
+            present(photos, animated: true, completion: nil)
+            
+            
+        }
+    }
+    
+    
     @IBAction func pictur(_ sender: AnyObject) {
         if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)){
             let imagePickerController = UIImagePickerController()
