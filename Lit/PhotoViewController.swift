@@ -1,5 +1,3 @@
-//
-//  PhotoViewController.swift
 //  Lit
 //
 //  Created by 田中颯太 on 2016/11/23.
@@ -12,7 +10,8 @@ import AVFoundation
 class PhotoViewController: UIViewController {
     var stillImageOutput: AVCaptureStillImageOutput!
     var session: AVCaptureSession!
-    @IBOutlet var photoview:UIView! {
+    let myAppFrameSize = UIScreen.main.nativeBounds.size
+       @IBOutlet var photoview:UIView! {
         didSet {
             
         }
@@ -31,7 +30,6 @@ class PhotoViewController: UIViewController {
         self.configureCamera()
     }
     // ここからフォトライぶらり
-    
     
     func configureCamera() -> Bool {
         // init camera device
@@ -68,7 +66,8 @@ class PhotoViewController: UIViewController {
             
             // layer for preview
             let previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.session) as AVCaptureVideoPreviewLayer
-            previewLayer.frame = CGRect(x: 0, y: 0, width: 375, height: 667)
+            previewLayer.frame = CGRect(x: 0, y: 0, width: myAppFrameSize.width, height: myAppFrameSize.height + 120)
+            previewLayer.position = CGPoint(x: 0, y: (self.navigationController?.navigationBar.frame.size.height)! + (UIApplication.shared.statusBarFrame.height) + 120)
             self.view.layer.addSublayer(previewLayer)
             self.session.startRunning()
         }
@@ -77,9 +76,20 @@ class PhotoViewController: UIViewController {
         }
         return true
     }
+    @IBAction func shotu (){
+        save()
+    }
     
+    //ここまでフォトライブラリc
+    func save (){
+        let size:CGRect = CGRect(x: 0, y: 30, width: 200, height: 200)
+        UIGraphicsBeginImageContext(size.size)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let caputure = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
     
-    //ここまでフォトライブラリ
+        UIImageWriteToSavedPhotosAlbum(caputure!, nil, nil, nil)
+    }
 
     
 

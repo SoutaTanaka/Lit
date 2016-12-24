@@ -22,14 +22,6 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.sourceType = .photoLibrary
-            imagePickerController.allowsEditing = true
-            imagePickerController.delegate = self
-            present(imagePickerController, animated: true, completion: nil)
-        }
-        
         
         drawViewArea.backgroundColor = UIColor.clear
         
@@ -54,7 +46,7 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
     @IBAction func which (){
         alert.title = "方法を選択"
         alert.addAction(UIAlertAction(title: "写真を追加", style: .default, handler: { action in
-            self.image()
+            
             
         }))
         alert.addAction(UIAlertAction(title: "テンプレートから選ぶ" , style: .default, handler: {action in
@@ -88,14 +80,14 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
     //    @IBAction func pictur(_ sender: AnyObject) {
     //
     func image (){
-                    if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)){
-                        let imagePickerController = UIImagePickerController()
-                        imagePickerController.sourceType = .photoLibrary
-                        imagePickerController.preferredContentSize = self.view.frame.size
-                        imagePickerController.allowsEditing = true
-                        imagePickerController.delegate = self
-                        present(imagePickerController, animated: true, completion: nil)
-                    }
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.allowsEditing = true
+            imagePickerController.delegate = self
+            present(imagePickerController, animated: true, completion: nil)
+        }
+        
     }
     //    }
     
@@ -105,14 +97,16 @@ class FirstViewController: UIViewController ,UIActionSheetDelegate, UIImagePicke
             imgView.image = editedImage
             imgView.contentMode = .scaleAspectFit
         }else{
-            imgView.image = image
+            imgView.image = image // ここのimageに情報が入ってない
         }
         
         
         picker.dismiss(animated: true, completion: nil)
         
     }
-    
+    @IBAction func background (){
+        image()
+    }
     
 }
 //パン、ピンチで拡大、縮小、移動
